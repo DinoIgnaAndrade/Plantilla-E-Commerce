@@ -64,5 +64,5 @@ yarn add @reduxjs/toolkit
 
 - **[react-native-swiper:1.6.0-rc.3](https://www.npmjs.com/package/react-native-swiper)** Proporciona un componente de deslizamiento útil para crear presentaciones de diapositivas o carruseles.
 
-H
+Hola como estas
 
