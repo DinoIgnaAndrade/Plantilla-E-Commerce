@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import MainScreen from '../screens/MainScreen';
+import HomeScreen from '../screens/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +16,7 @@ const TabNavigator = () => {
 
             <Tab.Screen
                 name='ShopStack'
-                component={MainScreen}
+                component={HomeScreen}
                 />
 
         </Tab.Navigator>
