@@ -1,11 +1,11 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 
 import ProductCard from './Cards/ProductCard';
-import { useGetProductsQuery } from '../services/shopServices';
 
-const ProductsDashboard = () => {
 
-    const { data, isLoading, error } = useGetProductsQuery()
+const ProductsDashboard = ({data}) => {
+
+    console.log('Dashboard',data);
 
     const renderItem = ({ item }) => (
         <ProductCard item={item} />
@@ -13,6 +13,7 @@ const ProductsDashboard = () => {
 
     return (
         <View style={styles.container}>
+            <Text style={styles.title}>Catalogo</Text>
             <FlatList
                 data={data}
                 keyExtractor={(item) => item.id.toString()}
@@ -27,9 +28,13 @@ export default ProductsDashboard
 
 const styles = StyleSheet.create({
     container:{
+        flex:1,
         padding: 5,
-        marginBottom:610,
-        borderRadius: 10, // Ajusta según tus necesidades
+        borderRadius: 10,
         overflow: 'hidden',
+    },
+    title: {
+        fontSize: 25,
+        padding:10
     }
 })

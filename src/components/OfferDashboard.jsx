@@ -5,14 +5,13 @@ import { useGetProductsQuery } from '../services/shopServices'
 import OfferCards from './Cards/OfferCards'
 import { useEffect, useState } from 'react'
 
-const OfferDashboard = () => {
+const OfferDashboard = ({data}) => {
 
-  const { data, isLoading, error } = useGetProductsQuery()
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     if (data) {
-      const filtered = data.filter(item => item.offer !== 0);
+      const filtered = data.filter(item => item.offer !== 0 && item.offer!==1);
       setFilteredData(filtered);
     }
   }, [data]);
@@ -43,6 +42,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 25,
-
+    padding:5
   }
 })

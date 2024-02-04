@@ -5,7 +5,6 @@ import TabNavigator from "./TabNavigator";
 const MainNavigator = () => {
 
     return (
-
         <NavigationContainer>
 
             <TabNavigator />

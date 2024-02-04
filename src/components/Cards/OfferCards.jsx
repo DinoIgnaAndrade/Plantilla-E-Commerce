@@ -2,13 +2,22 @@ import { Dimensions, Image, Pressable, StyleSheet, Text, View } from 'react-nati
 
 const OfferCards = ({ item }) => {
 
-    const offer = (item.price * item.offer).toFixed(2);  
-    const percentage = ((1-item.offer)*100).toFixed(2);
+    const offer = (item.price * item.offer).toFixed(2);
+    const percentage = ((1 - item.offer) * 100).toFixed(0);
 
     const { width: screenWidth } = Dimensions.get('window');
 
     return (
-        <Pressable style={[styles.container,{ width: screenWidth-40 }]}>
+        <Pressable
+            style={({ pressed }) => ({
+                backgroundColor: pressed ? 'rgba(50, 50, 50, 0.5)' : 'black',
+                borderRadius: 30,
+                ...styles.container,
+                width: screenWidth - 40, 
+            })}
+            android_ripple={{ color: 'rgba(255, 255, 255, 0.9)' }}
+        >
+
             <Image
                 style={styles.image}
                 resizeMode='cover'
@@ -29,13 +38,12 @@ export default OfferCards
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
-        flexDirection:'row',
-        gap:10,
+        flex: 1,
+        flexDirection: 'row',
+        gap: 10,
         padding: 10,
         margin: 5,
         borderRadius: 30,
-        backgroundColor: 'black',
         shadowColor: '#333333',
         shadowOffset: {
             width: 6,
@@ -49,22 +57,30 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 20,
     },
-    title:{
-        color:'white',
-        fontSize:25,
+    title: {
+        color: 'white',
+        fontSize: 25,
     },
-    price:{
-        color:'white',
-        fontSize:15,
+    price: {
+        fontSize: 15,
         textDecorationLine: 'line-through',
-        color:'#808080',
+        color: '#cc0000',
     },
-    offer:{
-        color:'white',
-        fontSize:25,
+    offer: {
+        color: 'white',
+        fontSize: 25,
     },
-    percentage:{
-        color:'white',
-        fontSize: 30,
+    percentage: {
+        backgroundColor:'white',
+        borderRadius:30,
+        padding:5,
+        paddingHorizontal:15,
+        position:'absolute',
+        color: 'black',
+        zIndex:1,
+        fontSize: 50,
+
+        left:200,
+        bottom:5
     }
 })

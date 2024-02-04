@@ -1,14 +1,16 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 
-import { useGetCategoriesQuery } from '../services/shopServices'
-import Card from './Cards/Card'
+import CategoryCard from './Cards/CategoryCard'
 
-const CategoryDashboard = () => {
+const CategoryDashboard = ({
 
-    const { data, isLoading, error } = useGetCategoriesQuery()
+  data,
+  navigation
+
+}) => {
 
     const renderItem = ({ item }) => (
-        <Card item={item}/>
+        <CategoryCard category={item} navigation={navigation}/>
       );
 
   return (

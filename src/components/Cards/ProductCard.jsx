@@ -1,24 +1,34 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 
 const ProductCard = ({ item }) => {
 
+
+    // Funcion que rendedriza iconos de estrellas segun el numero de item.rating.
     const renderStars = () => {
         const rating = Math.round(item.rating);
         const starsArray = Array.from({ length: 5 }, (_, index) => (
             index < rating ? (
-                <Ionicons key={index} name="star" color="gold" size={20} />
+                <Ionicons key={index} name="star" color="white" size={20} />
             ) : (
-                <Ionicons key={index} name="star-outline" color="gold" size={20} />
+                <Ionicons key={index} name="star-outline" color="white" size={20} />
             )
         ));
         return starsArray;
     };
 
-
     return (
-        <Pressable style={styles.container}>
+        <Pressable
+            style={({ pressed }) => [
+                {
+                    backgroundColor:pressed ? 'rgba(50, 50, 50, 0.5)' : 'black',
+                    borderRadius: 30,
+                },
+                styles.container
+            ]}
+            android_ripple={{ color: 'rgba(255, 255, 255, 0.9)' }}
+        >
 
             <Image
                 style={styles.image}
@@ -46,7 +56,6 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         padding: 5,
         margin: 5,
-        backgroundColor: 'black'
     },
     image: {
         alignSelf: 'center',
