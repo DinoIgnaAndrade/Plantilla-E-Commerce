@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 //vistas
 import HomeScreen from "../screens/HomeStack/HomeScreen"
 import CategoryProducts from "../screens/HomeStack/CategoryProducts";
+import DetailScreen from "../screens/HomeStack/DetailScreen";
 
 
 const Stack = createNativeStackNavigator();
@@ -26,6 +27,11 @@ const HomeNavigation = () => {
             <Stack.Screen
                 name='Category'
                 component={CategoryProducts}
+            />
+
+            <Stack.Screen
+                name='Details'
+                component={DetailScreen}
             />
         </Stack.Navigator>
     )

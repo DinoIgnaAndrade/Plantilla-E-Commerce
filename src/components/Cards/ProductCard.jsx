@@ -1,9 +1,16 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useDispatch } from 'react-redux'
 
+import { setProductIdSelected } from '../../features/shopSlice';
 import { Ionicons } from '@expo/vector-icons';
+;
 
-const ProductCard = ({ item }) => {
+const ProductCard = ({
 
+    item,
+    navigation
+
+ }) => {
 
     // Funcion que rendedriza iconos de estrellas segun el numero de item.rating.
     const renderStars = () => {
@@ -18,6 +25,10 @@ const ProductCard = ({ item }) => {
         return starsArray;
     };
 
+    const windowWidth = Dimensions.get('window').width;
+
+    const dispatch = useDispatch();
+
     return (
         <Pressable
             style={({ pressed }) => [
@@ -28,6 +39,10 @@ const ProductCard = ({ item }) => {
                 styles.container
             ]}
             android_ripple={{ color: 'rgba(255, 255, 255, 0.9)' }}
+            onPress={()=>[
+                navigation.navigate('Details'),
+                dispatch(setProductIdSelected(item.id))
+        ]}
         >
 
             <Image
@@ -52,7 +67,7 @@ export default ProductCard
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex:1,
         borderRadius: 25,
         padding: 5,
         margin: 5,

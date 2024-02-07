@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Easing, Animated } from 'react-native';
+
 
 import { AntDesign } from '@expo/vector-icons';
 
@@ -11,12 +13,15 @@ import ProfileScreen from '../screens/ProfileScreen';
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+
+
     return (
         <Tab.Navigator
             screenOptions={{
                 headerShown: false,
                 tabBarShowLabel: false,
                 tabBarStyle: styles.tabBar,
+                tabBarHideOnKeyboard: true,
             }}>
 
             <Tab.Screen
@@ -26,8 +31,8 @@ const TabNavigator = () => {
                     tabBarIcon: ({ focused }) => (
                         <AntDesign
                             name="home"
-                            size={40}
-                            color={focused ? 'white' : 'black'}
+                            size={focused ? 50 : 30 }
+                            color={focused ? 'black' : 'white'}
                             style={focused ? styles.focusedIcon : styles.unfocusedIcon}
                         />
                     ),
@@ -41,8 +46,8 @@ const TabNavigator = () => {
                     tabBarIcon: ({ focused }) => (
                         <AntDesign
                             name="hearto"
-                            size={40}
-                            color={focused ? 'white' : 'black'}
+                            size={focused ? 40 : 30 }
+                            color={focused ? 'black' : 'white'}
                             style={focused ? styles.focusedIcon : styles.unfocusedIcon}
                         />
                     ),
@@ -56,8 +61,8 @@ const TabNavigator = () => {
                     tabBarIcon: ({ focused }) => (
                         <AntDesign
                             name="shoppingcart"
-                            size={40}
-                            color={focused ? 'white' : 'black'}
+                            size={focused ? 40 : 30 }
+                            color={focused ? 'black' : 'white'}
                             style={focused ? styles.focusedIcon : styles.unfocusedIcon}
                         />
                     ),
@@ -71,8 +76,8 @@ const TabNavigator = () => {
                     tabBarIcon: ({ focused }) => (
                         <AntDesign
                             name="user"
-                            size={40}
-                            color={focused ? 'white' : 'black'}
+                            size={focused ? 40 : 30 }
+                            color={focused ? 'black' : 'white'}
                             style={focused ? styles.focusedIcon : styles.unfocusedIcon}
                         />
                     ),
@@ -89,18 +94,15 @@ export default TabNavigator;
 
 const styles = StyleSheet.create({
     tabBar: {
-        shadowColor: '#ccc',
-        elevation: 5,
-        position: 'absolute',
-        bottom: 10,
-        left: 20,
-        right: 20,
-        borderRadius: 20,
-        height: 55,
+        backgroundColor:'black',
+        borderTopLeftRadius: 20,
+        borderTopEndRadius:20
     },
     focusedIcon: {
+        position:'absolute',
+        bottom:15,
         zIndex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
         borderRadius: 30,
         padding: 5,
     },

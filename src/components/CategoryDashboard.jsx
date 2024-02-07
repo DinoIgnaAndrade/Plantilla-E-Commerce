@@ -29,6 +29,6 @@ export default CategoryDashboard
 
 const styles = StyleSheet.create({
     container:{
-        margin:10
+        margin:8
     }
 })

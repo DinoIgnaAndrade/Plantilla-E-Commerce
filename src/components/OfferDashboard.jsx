@@ -5,7 +5,10 @@ import { useGetProductsQuery } from '../services/shopServices'
 import OfferCards from './Cards/OfferCards'
 import { useEffect, useState } from 'react'
 
-const OfferDashboard = ({data}) => {
+const OfferDashboard = ({
+  data,
+  navigation
+}) => {
 
   const [filteredData, setFilteredData] = useState([]);
 
@@ -17,7 +20,7 @@ const OfferDashboard = ({data}) => {
   }, [data]);
 
   const renderItem = ({ item }) => (
-    <OfferCards item={item} />
+    <OfferCards item={item} navigation={navigation} />
   );
 
   return (
@@ -37,8 +40,8 @@ export default OfferDashboard
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 50,
     paddingHorizontal: 15,
+    paddingBottom:10
   },
   title: {
     fontSize: 25,

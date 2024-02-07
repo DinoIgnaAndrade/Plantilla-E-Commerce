@@ -1,11 +1,19 @@
 import { Dimensions, Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import { useDispatch } from 'react-redux';
 
-const OfferCards = ({ item }) => {
+import { setProductIdSelected } from '../../features/shopSlice';
+
+const OfferCards = ({
+    item,
+    navigation
+}) => {
 
     const offer = (item.price * item.offer).toFixed(2);
     const percentage = ((1 - item.offer) * 100).toFixed(0);
 
     const { width: screenWidth } = Dimensions.get('window');
+
+    const dispatch = useDispatch();
 
     return (
         <Pressable
@@ -13,9 +21,13 @@ const OfferCards = ({ item }) => {
                 backgroundColor: pressed ? 'rgba(50, 50, 50, 0.5)' : 'black',
                 borderRadius: 30,
                 ...styles.container,
-                width: screenWidth - 40, 
+                width: screenWidth - 40,
             })}
             android_ripple={{ color: 'rgba(255, 255, 255, 0.9)' }}
+            onPress={() => [
+                navigation.navigate('Details'),
+                dispatch(setProductIdSelected(item.id))
+            ]}
         >
 
             <Image
@@ -43,14 +55,7 @@ const styles = StyleSheet.create({
         gap: 10,
         padding: 10,
         margin: 5,
-        borderRadius: 30,
-        shadowColor: '#333333',
-        shadowOffset: {
-            width: 6,
-            height: 6,
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 4,
+        borderRadius: 30
     },
     image: {
         width: 100,
@@ -71,16 +76,16 @@ const styles = StyleSheet.create({
         fontSize: 25,
     },
     percentage: {
-        backgroundColor:'white',
-        borderRadius:30,
-        padding:5,
-        paddingHorizontal:15,
-        position:'absolute',
+        backgroundColor: 'white',
+        borderRadius: 30,
+        padding: 5,
+        paddingHorizontal: 15,
+        position: 'absolute',
         color: 'black',
-        zIndex:1,
+        zIndex: 1,
         fontSize: 50,
 
-        left:200,
-        bottom:5
+        left: 200,
+        bottom: 5
     }
 })

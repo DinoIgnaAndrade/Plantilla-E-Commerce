@@ -3,24 +3,29 @@ import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import ProductCard from './Cards/ProductCard';
 
 
-const ProductsDashboard = ({data}) => {
+const ProductsDashboard = ({ 
+    
+    data,
+    navigation
 
-    console.log('Dashboard',data);
+ }) => {
 
     const renderItem = ({ item }) => (
-        <ProductCard item={item} />
+        <ProductCard item={item} navigation={navigation} />
       );
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Catalogo</Text>
             <FlatList
                 data={data}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={renderItem}
                 numColumns={2}
+                columnWrapperStyle={styles.columnWrapper}
+                style={styles.FlatList}
             />
-        </View>
+        </SafeAreaView>
     )
 }
 
@@ -28,7 +33,6 @@ export default ProductsDashboard
 
 const styles = StyleSheet.create({
     container:{
-        flex:1,
         padding: 5,
         borderRadius: 10,
         overflow: 'hidden',
@@ -36,5 +40,11 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 25,
         padding:10
+    },
+    columnWrapper: {
+        justifyContent: 'space-between',
+    },
+    FlatList:{
+        marginBottom:60
     }
 })
