@@ -1,6 +1,6 @@
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import ProductCard from '../Cards/ProductCard';
 
-import ProductCard from './Cards/ProductCard';
 
 
 const ProductsDashboard = ({ 
@@ -44,7 +44,4 @@ const styles = StyleSheet.create({
     columnWrapper: {
         justifyContent: 'space-between',
     },
-    FlatList:{
-        marginBottom:60
-    }
 })

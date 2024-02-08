@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 
-import CategoryCard from './Cards/CategoryCard'
+import CategoryCard from '../Cards/CategoryCard'
 
 const CategoryDashboard = ({
 

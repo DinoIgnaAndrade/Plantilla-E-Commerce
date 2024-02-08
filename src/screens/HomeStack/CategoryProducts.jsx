@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 
 import { useGetProductsByCategoryQuery, } from '../../services/shopServices'
 import { useSelector } from 'react-redux'
-import ProductsDashboard from '../../components/ProductsDashboard'
 
 import ProductCard from '../../components/Cards/ProductCard';
+import ProductsDashboard from '../../components/Dashboard/ProductsDashboard';
 
 const CategoryProducts = ({ navigation }) => {
 

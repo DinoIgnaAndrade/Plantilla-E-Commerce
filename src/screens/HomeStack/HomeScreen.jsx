@@ -3,10 +3,12 @@ import { StyleSheet, Text, View } from 'react-native'
 import { useGetCategoriesQuery } from '../../services/shopServices'
 import { useGetProductsQuery } from '../../services/shopServices';
 
-import OfferDashboard from '../../components/OfferDashboard'
-import CategoryDashboard from '../../components/CategoryDashboard'
-import ProductsDashboard from '../../components/ProductsDashboard'
+
 import LoadingIndicator from '../../components/LoadingIndicator';
+import CategoryDashboard from '../../components/Dashboard/CategoryDashboard';
+import ProductsDashboard from '../../components/Dashboard/ProductsDashboard';
+import OfferDashboard from '../../components/Dashboard/OfferDashboard';
+
 
 const MainScreen = ({
   navigation
@@ -42,37 +44,37 @@ export default MainScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom:320,
-    marginHorizontal:5
+    marginBottom: 320,
+    marginHorizontal: 5
   },
   offerStyle: {
     marginTop: 35,
     borderRadius: 40,
-    shadowColor: 'rgba(0, 0, 0, 0.5)', // Color de la sombra
-    shadowOffset: { width: 0, height: 2 }, // Desplazamiento de la sombra
-    shadowOpacity: 1, // Opacidad de la sombra
-    shadowRadius: 10, // Radio de la sombra
-    elevation: 5, // Elevación en Android
-    backgroundColor: 'white', // Fondo del contenedor
+    shadowColor: 'rgba(0, 0, 0, 0.5)',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 1,
+    shadowRadius: 10,
+    elevation: 5,
+    backgroundColor: 'white',
   },
   categoryStyle: {
     marginTop: 10,
     borderRadius: 40,
-    shadowColor: 'rgba(0, 0, 0, 0.5)', // Color de la sombra
-    shadowOffset: { width: 0, height: 2 }, // Desplazamiento de la sombra
-    shadowOpacity: 1, // Opacidad de la sombra
-    shadowRadius: 10, // Radio de la sombra
-    elevation: 5, // Elevación en Android
-    backgroundColor: 'white', // Fondo del contenedor
+    shadowColor: 'rgba(0, 0, 0, 0.5)',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 1,
+    shadowRadius: 10,
+    elevation: 5,
+    backgroundColor: 'white',
   },
   productStyle: {
     marginTop: 10,
     borderRadius: 40,
-    shadowColor: 'rgba(0, 0, 0, 0.5)', // Color de la sombra
-    shadowOffset: { width: 0, height: 2 }, // Desplazamiento de la sombra
-    shadowOpacity: 1, // Opacidad de la sombra
-    shadowRadius: 10, // Radio de la sombra
-    elevation: 5, // Elevación en Android
-    backgroundColor: 'white', // Fondo del contenedor
+    shadowColor: 'rgba(0, 0, 0, 0.5)',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 1,
+    shadowRadius: 10,
+    elevation: 5,
+    backgroundColor: 'white',
   },
 })

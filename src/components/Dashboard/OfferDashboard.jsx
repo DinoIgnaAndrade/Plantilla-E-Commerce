@@ -1,8 +1,8 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 
-import { useGetProductsQuery } from '../services/shopServices'
+import { useGetProductsQuery } from '../../services/shopServices'
 
-import OfferCards from './Cards/OfferCards'
+import OfferCards from '../Cards/OfferCards'
 import { useEffect, useState } from 'react'
 
 const OfferDashboard = ({
