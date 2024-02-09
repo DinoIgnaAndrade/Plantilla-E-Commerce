@@ -1,13 +1,14 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 
 import LoginScreen from './LogStack/LoginScreen'
+import SignUpScreen from './LogStack/SignUpScreen'
 
 const FavoriteScreen = () => {
 
   return (
       <SafeAreaView style={styles.container}>
-        <Text>Login</Text>
         <LoginScreen/>
+        {/* <SignUpScreen/> */}
       </SafeAreaView>
   )
 }

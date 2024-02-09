@@ -4,34 +4,39 @@ import { useDispatch } from 'react-redux';
 
 import Input from '../../components/Inputs/Input'
 
+import { useLogInMutation } from '../../services/authServices';
+import { setUser } from '../../features/authSlice';
+import { insertData } from '../../db';
+
 
 const LoginScreen = () => {
 
     //States del formulario
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    //const [triggerSignUp, result] = useLogInMutation();
+    const [triggerSignUp, result] = useLogInMutation();
+
 
     //Redux
     const dispatch = useDispatch();
 
-    // const onSubmit = () => {
-    //     triggerSignUp({ email, password })
-    // }
+    const onSubmit = () => {
+        triggerSignUp({ email, password })
+    }
 
-    // useEffect(() => {
-    //     if (result.data) {
-    //         dispatch(setUser(result.data))
-    //         insertData({
-    //             localId: result.data.localId,
-    //             email: result.data.email,
-    //             token: result.data.idToken
-    //         })
-    //             .then(result => console.log('User Insert', result))
-    //             .catch(error => console.log('Insert User Error', error.message))
-    //     }
+    useEffect(() => {
+        if (result.data) {
+            dispatch(setUser(result.data))
+            insertData({
+                localId: result.data.localId,
+                email: result.data.email,
+                token: result.data.idToken
+            })
+                .then(result => console.log('User Insert', result))
+                .catch(error => console.log('Insert User Error', error.message))
+        }
 
-    // }, [result])
+    }, [result])
 
 
     return (
@@ -50,20 +55,37 @@ const LoginScreen = () => {
                     isSecureEntry={true} />
 
                 <Pressable
-                    onPress={null}
-                    style={styles.buttom}>
+                    onPress={onSubmit}
+                    style={({ pressed }) => [
+                        {
+                            backgroundColor: pressed ? 'rgba(50, 50, 50, 0.5)' : 'black',
+                            borderRadius: 30,
+                        },
+                        styles.buttom
+                    ]}
+                    android_ripple={{ color: 'rgba(255, 255, 255, 0.9)' }}
+                > 
                     <Text style={styles.buttomText}>Ingresar</Text>
                 </Pressable>
             </View>
 
-            <View style={styles.signUpContainer}>
+            <View style={styles.loginContainer}>
                 <Text style={styles.subtitle}>¿No tienes una cuenta?</Text>
                 <Pressable
                     onPress={null}
-                    style={styles.subtitleLink}>
+                    style={({ pressed }) => [
+                        {
+                            backgroundColor: pressed ? 'rgba(50, 50, 50, 0.5)' : 'black',
+                            borderRadius: 30,
+                        },
+                        styles.subtitleLink
+                    ]}
+                    android_ripple={{ color: 'rgba(255, 255, 255, 0.9)' }}
+                >
                     <Text style={styles.subtitleText}>Crear una</Text>
                 </Pressable>
             </View>
+
         </SafeAreaView>
     )
 }
@@ -103,7 +125,7 @@ const styles = StyleSheet.create({
         fontSize:15,
         color:'white'
     },
-    signUpContainer: {
+    loginContainer: {
         alignItems:'center',
         borderRadius: 30,
         margin: 30,
