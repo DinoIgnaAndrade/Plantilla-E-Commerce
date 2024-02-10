@@ -4,7 +4,7 @@ const CartScreen = () => {
 
   return (
       <SafeAreaView style={styles.container}>
-        <Text>CartScreen</Text>
+
       </SafeAreaView>
   )
 }

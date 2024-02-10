@@ -1,12 +1,23 @@
-import { Image, StyleSheet, Text, View, Pressable } from 'react-native'
+import { Image, StyleSheet, Text, View, Pressable } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { AntDesign } from '@expo/vector-icons';
 
+import { logout } from '../../features/authSlice';
+import { deleteData } from '../../db';
 
 const CardLogout = () => {
 
+    const localId = useSelector(state => state.authReducer.localId)
+    const dispatch = useDispatch()
+
+    const onLogout = ()=>{
+        dispatch(logout())
+        const deleteSession = deleteData(localId)
+    }
 
     return (
         <Pressable
+            onPress={onLogout}
             style={({ pressed }) => [
                 {
                     backgroundColor: pressed ? 'rgba(0, 0, 0, 0.3)' : 'white',

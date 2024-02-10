@@ -1,0 +1,85 @@
+import { Image, ImageBackground, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
+import UserIformation from '../../components/CardsInformation/UserInformation';
+import DireccionInformation from '../../components/CardsInformation/DireccionInformation';
+import CardLogout from '../../components/CardsInformation/CardLogout';
+import AuthButtom from '../../components/Inputs/AuthButtom';
+
+
+const ProfileScreen = ({ navigation }) => {
+
+  const user = useSelector(state => state.authReducer.user)
+  useEffect(() => {
+    console.log('User data updated:', user);
+  }, [user]); 
+
+  return (
+    <SafeAreaView style={styles.container}>
+
+      {
+        !user
+          ?
+          <ImageBackground
+            source={require("../../../assets/img/background.jpg")} // Ruta de la imagen
+            style={styles.background}
+            resizeMode="cover"
+          >
+            <View style={styles.welcomeLogo}>
+              <Text style={styles.welcomeMessage}>Platillé</Text>
+              <Image
+                source={require("../../../assets/img/logoImage.jpg")} // Ruta de la imagen
+                style={styles.image}
+              />
+            </View>
+
+            <View style={styles.authContainer}>
+              <AuthButtom navigation={navigation} />
+            </View>
+          </ImageBackground>
+
+
+          :
+          <>
+            <UserIformation />
+            <DireccionInformation />
+            <CardLogout />
+          </>
+      }
+
+
+
+    </SafeAreaView>
+  )
+}
+
+export default ProfileScreen
+
+const styles = StyleSheet.create({
+  container: {
+  },
+  background: {
+    resizeMode: "cover",
+    height: 1000,
+    justifyContent: 'center',
+  },
+  welcomeLogo:{
+    alignItems: "center",
+    marginBottom:300
+  },
+  welcomeMessage: {
+    color: 'white',
+    fontSize:40,
+    marginBottom:30
+  },
+  image: {
+    borderRadius: 100,
+    width: 200,
+    height: 200,
+    resizeMode: 'contain'
+  },
+  authContainer: {
+
+  },
+})

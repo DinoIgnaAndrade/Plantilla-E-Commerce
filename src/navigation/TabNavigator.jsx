@@ -8,7 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import HomeNavegation from './HomeNavigation';
 import FavoriteScreen from '../screens/FavoriteScreen';
 import CartScreen from '../screens/CartScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import ProfileNavigation from './ProfileNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -71,7 +71,7 @@ const TabNavigator = () => {
 
             <Tab.Screen
                 name='ProfileStack'
-                component={ProfileScreen}
+                component={ProfileNavigation}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <AntDesign

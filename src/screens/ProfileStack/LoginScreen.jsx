@@ -9,7 +9,7 @@ import { setUser } from '../../features/authSlice';
 import { insertData } from '../../db';
 
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
 
     //States del formulario
     const [email, setEmail] = useState("");
@@ -21,7 +21,8 @@ const LoginScreen = () => {
     const dispatch = useDispatch();
 
     const onSubmit = () => {
-        triggerSignUp({ email, password })
+        triggerSignUp({ email, password }),
+        navigation.navigate('Profile')
     }
 
     useEffect(() => {
