@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { useState } from 'react';
 
-const Input = ({ label, isSecureEntry = false , error = " " , onChange }) => {
+const Input = ({ label, isSecureEntry = false , error = " " , onChange, keyboard }) => {
 
     const [input, setInput] = useState('');
 
@@ -18,6 +18,7 @@ const Input = ({ label, isSecureEntry = false , error = " " , onChange }) => {
                 onChangeText={onHandleCHangeText}
                 secureTextEntry={isSecureEntry}
                 value={input}
+                keyboardType={keyboard}
             />
             {error && <Text style={styles.error}>{error}</Text>}
         </View>

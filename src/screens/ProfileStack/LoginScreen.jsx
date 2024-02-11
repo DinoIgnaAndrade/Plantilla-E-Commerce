@@ -1,6 +1,6 @@
 import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Input from '../../components/Inputs/Input'
 
@@ -15,14 +15,13 @@ const LoginScreen = ({navigation}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [triggerSignUp, result] = useLogInMutation();
-
-
+    
     //Redux
     const dispatch = useDispatch();
+    const user = useSelector(state => state.authReducer.user)
 
     const onSubmit = () => {
-        triggerSignUp({ email, password }),
-        navigation.navigate('Profile')
+        triggerSignUp({ email, password })
     }
 
     useEffect(() => {
@@ -37,7 +36,11 @@ const LoginScreen = ({navigation}) => {
                 .catch(error => console.log('Insert User Error', error.message))
         }
 
-    }, [result])
+        if(user) {
+            navigation.navigate('Profile')
+        }
+
+    }, [result,user])
 
 
     return (
@@ -73,7 +76,7 @@ const LoginScreen = ({navigation}) => {
             <View style={styles.loginContainer}>
                 <Text style={styles.subtitle}>¿No tienes una cuenta?</Text>
                 <Pressable
-                    onPress={null}
+                    onPress={()=> navigation.navigate('SignUp')}
                     style={({ pressed }) => [
                         {
                             backgroundColor: pressed ? 'rgba(50, 50, 50, 0.5)' : 'black',

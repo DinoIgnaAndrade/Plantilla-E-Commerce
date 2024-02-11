@@ -7,7 +7,7 @@ export const init = () => {
     const promise = new Promise((resolve, reject) => {
         db.transaction(tx => {
             tx.executeSql(
-                'CREATE TABLE IF NOT EXISTS localData (localId TEXT PRIMARY KEY NOT NULL, email TEXT NOT NULL, token TEXT NOT NULL);',
+                'CREATE TABLE IF NOT EXISTS localData (localId TEXT PRIMARY KEY NOT NULL, email TEXT NOT NULL, token TEXT NOT NULL, name TEXT NOT NULL, phone TEXT NOT NULL);',
                 [],
                 () => resolve(),
                 (_, error) => reject(error),
@@ -22,8 +22,23 @@ export const insertData = ({localId, email, token}) => {
     const promise = new Promise((resolve, reject) => {
         db.transaction(tx => {
             tx.executeSql(
-                'INSERT INTO localData (localId, email, token) VALUES (?,?,?);',
-                [localId, email, token],
+                'INSERT INTO localData (localId, email, token, name, phone) VALUES (?,?,?,?,?);',
+                [localId, email, token,'User','123'],
+                (_, result) => resolve(result),
+                (_, error) => reject(error)
+            )
+        })
+    })
+    return promise
+}
+
+export const updateUserData = ({ localId, name, phone }) => {
+
+    const promise = new Promise((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                'UPDATE localData SET name = ?, phone = ? WHERE localId = ?;',
+                [name, phone, localId],
                 (_, result) => resolve(result),
                 (_, error) => reject(error)
             )
@@ -54,7 +69,7 @@ export const deleteData = (localId) => {
 
         db.transaction(tx => {
             tx.executeSql(
-                'DELETE FROM localData WHERE localId = ?;',
+                'DROP TABLE IF EXISTS localData;',
                 [localId],
                 (_, result) => resolve(result),
                 (_, error) => reject(error)

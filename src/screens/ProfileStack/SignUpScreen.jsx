@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Input from '../../components/Inputs/Input';
 
@@ -9,6 +9,7 @@ import { setUser } from '../../features/authSlice';
 import { signupSchema } from '../../validations/signupSchema';
 
 const SignUpScreen = ({ navigation }) => {
+
   //States del formulario
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,6 +25,7 @@ const SignUpScreen = ({ navigation }) => {
 
   //Redux
   const dispatch = useDispatch();
+  const user = useSelector(state => state.authReducer.user)
 
   const onSubmit = () => {
     setEmailError("")
@@ -68,6 +70,11 @@ const SignUpScreen = ({ navigation }) => {
     if (result.data) {
       dispatch(setUser(result.data))
     }
+
+    if (user) {
+      navigation.navigate('Profile')
+    }
+
   }, [result])
 
 
@@ -98,13 +105,13 @@ const SignUpScreen = ({ navigation }) => {
           onPress={onSubmit}
           style={({ pressed }) => [
             {
-                backgroundColor: pressed ? 'rgba(50, 50, 50, 0.5)' : 'black',
-                borderRadius: 30,
+              backgroundColor: pressed ? 'rgba(50, 50, 50, 0.5)' : 'black',
+              borderRadius: 30,
             },
             styles.buttom
-        ]}
-        android_ripple={{ color: 'rgba(255, 255, 255, 0.9)' }}
-    >
+          ]}
+          android_ripple={{ color: 'rgba(255, 255, 255, 0.9)' }}
+        >
           <Text style={styles.text}>Registrarme</Text>
         </Pressable>
       </View>
@@ -112,16 +119,16 @@ const SignUpScreen = ({ navigation }) => {
       <View style={styles.signUpContainer}>
         <Text style={styles.subtitle}>¿Ya tienes una cuenta?</Text>
         <Pressable
-          onPress={null}
+          onPress={() => navigation.navigate('Login')}
           style={({ pressed }) => [
             {
-                backgroundColor: pressed ? 'rgba(50, 50, 50, 0.5)' : 'black',
-                borderRadius: 30,
+              backgroundColor: pressed ? 'rgba(50, 50, 50, 0.5)' : 'black',
+              borderRadius: 30,
             },
             styles.subtitleLink
-        ]}
-        android_ripple={{ color: 'rgba(255, 255, 255, 0.9)' }}
-    >
+          ]}
+          android_ripple={{ color: 'rgba(255, 255, 255, 0.9)' }}
+        >
           <Text style={styles.subtitleText}>Ingresar</Text>
         </Pressable>
       </View>
@@ -158,7 +165,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'black',
     padding: 20,
-    marginTop:30,
+    marginTop: 30,
     borderRadius: 50
   },
   text: {

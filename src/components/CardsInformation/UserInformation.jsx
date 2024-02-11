@@ -1,19 +1,34 @@
-import { Image, StyleSheet, Text, View, Pressable } from 'react-native'
+import { Image, StyleSheet, Text, View, Pressable, Modal } from 'react-native'
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { AntDesign } from '@expo/vector-icons';
 
 import profileLogo from '../../../assets/img/profile-logo.png'
+import PersonalInput from '../Inputs/PersonalInput';
 
+const UserIformation = ({ navigate }) => {
 
-const UserIformation = () => {
+    const email = useSelector(state => state.authReducer.user)
+    const name = useSelector(state => state.authReducer.name)
+    const phone = useSelector(state => state.authReducer.phone)
+    
+    console.log('state',name,phone)
 
+    //Modal
+    const [modalVisible, setModalVisible] = useState(false);
 
-
+    const toggleModal = () => {
+        setModalVisible(!modalVisible);
+    };
+    
     return (
+
         <View style={styles.container}>
 
             <Text style={styles.title}>Profile</Text>
 
             <Pressable
+                onPress={toggleModal}
                 style={({ pressed }) => [
                     {
                         backgroundColor: pressed ? 'rgba(0, 0, 0, 0.3)' : 'white',
@@ -28,11 +43,20 @@ const UserIformation = () => {
                     style={styles.imgLogo}
                 />
                 <View>
-                    <Text style={styles.profileText}>Dino Ignacio Andrade</Text>
-                    <Text style={{ fontSize:20}}>dinoignaandrade@gmail.com</Text>
-                    <Text style={{fontSize:20}}>1131916494</Text>
+                    <Text style={styles.profileText}>{name}</Text>
+                    <Text style={{ fontSize: 20 }}>{email}</Text>
+                    <Text style={{ fontSize: 20 }}>{phone}</Text>
                 </View>
             </Pressable>
+
+            <Modal
+                visible={modalVisible}
+                transparent={true}
+                animationType="slide"
+                onRequestClose={toggleModal}
+            >
+                <PersonalInput toggleModal={toggleModal} />
+            </Modal>
 
         </View>
     )
@@ -43,7 +67,7 @@ export default UserIformation
 const styles = StyleSheet.create({
     container: {
         margin: 5,
-        borderRadius:100,
+        borderRadius: 100,
     },
     title: {
         fontSize: 40,

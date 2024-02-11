@@ -11,12 +11,13 @@ import AuthButtom from '../../components/Inputs/AuthButtom';
 const ProfileScreen = ({ navigation }) => {
 
   const user = useSelector(state => state.authReducer.user)
+  
   useEffect(() => {
-    console.log('User data updated:', user);
+    console.log('Login State: ', user);
   }, [user]); 
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
 
       {
         !user
@@ -41,11 +42,11 @@ const ProfileScreen = ({ navigation }) => {
 
 
           :
-          <>
+          <View style={styles.container}>
             <UserIformation />
             <DireccionInformation />
             <CardLogout />
-          </>
+          </View>
       }
 
 
@@ -58,6 +59,7 @@ export default ProfileScreen
 
 const styles = StyleSheet.create({
   container: {
+    marginTop:30,
   },
   background: {
     resizeMode: "cover",
