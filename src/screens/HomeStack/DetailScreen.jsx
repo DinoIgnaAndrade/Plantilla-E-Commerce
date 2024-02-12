@@ -1,17 +1,19 @@
 import { ScrollView, Pressable, StyleSheet, Text, View } from 'react-native'
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { useGetProductsByIdQuery } from '../../services/shopServices'
+import { addItem } from '../../features/cartSlice'
 
 import Carrousel from '../../components/Cards/Carrousel'
 import LoadingIndicator from '../../components/LoadingIndicator';
 
 const DetailScreen = () => {
 
-  const [product, setProduct] = useState()
-  const id = useSelector(state => state.shopReducer.productIdSelected)
-  const { data, isLoading, error } = useGetProductsByIdQuery(id)
+  const [product, setProduct] = useState();
+  const id = useSelector(state => state.shopReducer.productIdSelected);
+  const { data, isLoading, error } = useGetProductsByIdQuery(id);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isLoading && data) {
@@ -22,10 +24,11 @@ const DetailScreen = () => {
     }
   }, [isLoading, data, error]);
 
+  const onAddToCart = () => {
+    dispatch(addItem({ ...product, quantity: 1 }));
+  }
+
   console.log('product', product)
-
-
-
 
   return (
     !product ? (
@@ -70,6 +73,7 @@ const DetailScreen = () => {
                 <Text style={styles.priceOffer}>${product.price}</Text>
                 <Text style={styles.offer}>${(product.price * product.offer).toFixed(2)}</Text>
                 <Pressable
+                  onPress={onAddToCart}
                   style={({ pressed }) => [
                     {
                       backgroundColor: pressed ? 'rgba(50, 50, 50, 0.5)' : 'black',
@@ -78,7 +82,7 @@ const DetailScreen = () => {
                     styles.buttom
                   ]}
                   android_ripple={{ color: 'rgba(255, 255, 255, 0.9)' }}
-                  onPress={null}>
+                >
                   <Text style={styles.textButtom}>Agregar</Text>
                 </Pressable>
               </View>
@@ -149,13 +153,13 @@ const styles = StyleSheet.create({
   },
   priceContainer: {
     flex: 1,
-    padding:10,
+    padding: 10,
     borderRadius: 100,
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 150,
     alignSelf: 'center',
-    marginTop:80,
+    marginTop: 80,
     marginBottom: 10,
 
     shadowColor: 'rgba(0, 0, 0, 0.5)',
@@ -168,13 +172,13 @@ const styles = StyleSheet.create({
   },
   offerContainer: {
     flex: 1,
-    padding:10,
+    padding: 10,
     borderRadius: 100,
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 15,
     alignSelf: 'center',
-    marginTop:100,
+    marginTop: 100,
     marginBottom: 10,
 
     shadowColor: 'rgba(0, 0, 0, 0.5)',
@@ -187,7 +191,7 @@ const styles = StyleSheet.create({
   priceOffer: {
     fontSize: 20,
     textDecorationLine: 'line-through',
-    alignSelf:'center',
+    alignSelf: 'center',
     margin: 10,
     color: 'grey'
   },

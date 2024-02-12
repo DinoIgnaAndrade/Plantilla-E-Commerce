@@ -6,11 +6,13 @@ import { authApi } from "../services/authServices";
 
 import shopReducer from "../features/shopSlice";
 import authReducer from "../features/authSlice";
+import cartReducer  from './../features/cartSlice';
 
 const store = configureStore({
     reducer: {
         shopReducer,
         authReducer,
+        cartReducer,
         [shopApi.reducerPath]: shopApi.reducer,
         [authApi.reducerPath]: authApi.reducer
     },

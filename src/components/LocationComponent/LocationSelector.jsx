@@ -15,7 +15,7 @@ const LocationSelector = () => {
     const [error, setError] = useState("");
     const [address, setAddress] = useState("");
     const dispatch = useDispatch();
-    const localId = useSelector(state=>state.authReducer.localId);
+    const localId = useSelector(state => state.authReducer.localId);
     const [triggerPutAddress, result] = usePutUserLocationMutation()
 
     useEffect(() => {
@@ -73,7 +73,16 @@ const LocationSelector = () => {
                         <Text style={styles.textLocation}>
                             (Lat: {location.latitude}, Long:{location.longitude})
                         </Text>
-                        <Pressable style={styles.btn} onPress={onConfirm}>
+                        <Pressable
+                            onPress={onConfirm}
+                            style={({ pressed }) => [
+                                {
+                                    backgroundColor: pressed ? 'rgba(50, 50, 50, 0.5)' : 'black',
+                                },
+                                styles.btn
+                            ]}
+                            android_ripple={{ color: 'rgba(255, 255, 255, 0.9)' }}
+                        >
                             <Text style={styles.txtBtn}>Actualizar Ubicacion</Text>
                         </Pressable>
                         <MapPreview location={location} />
@@ -95,25 +104,25 @@ const styles = StyleSheet.create({
         paddingBottom: 130,
         gap: 5,
     },
-    title:{
-        fontSize:30,
-        padding:10,
-        borderRadius:50,
-        color:'white',
-        backgroundColor:'black',
-        marginBottom:30,
+    title: {
+        fontSize: 30,
+        padding: 10,
+        borderRadius: 50,
+        color: 'white',
+        backgroundColor: 'black',
+        marginBottom: 30,
     },
     textAddress: {
         fontSize: 30,
         textAlign: 'center'
     },
-    btn:{
-        margin:10,
-        backgroundColor:'black',
-        borderRadius:50
+    btn: {
+        margin: 10,
+        backgroundColor: 'black',
+        borderRadius: 50
     },
-    txtBtn:{
-        padding:15,
-        color:'#fff',
+    txtBtn: {
+        padding: 15,
+        color: '#fff',
     }
 })
