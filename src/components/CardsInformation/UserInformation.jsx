@@ -12,8 +12,6 @@ const UserIformation = ({ navigate }) => {
     const name = useSelector(state => state.authReducer.name)
     const phone = useSelector(state => state.authReducer.phone)
     
-    console.log('state',name,phone)
-
     //Modal
     const [modalVisible, setModalVisible] = useState(false);
 

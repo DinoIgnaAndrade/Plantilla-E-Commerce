@@ -2,11 +2,11 @@ import { ScrollView, Pressable, StyleSheet, Text, View } from 'react-native'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
-import { useGetProductsByIdQuery } from '../../services/shopServices'
-import { addItem } from '../../features/cartSlice'
-
 import Carrousel from '../../components/Cards/Carrousel'
 import LoadingIndicator from '../../components/LoadingIndicator';
+
+import { useGetProductsByIdQuery } from '../../services/shopServices'
+import { addItem } from '../../features/cartSlice';
 
 const DetailScreen = () => {
 
@@ -17,18 +17,16 @@ const DetailScreen = () => {
 
   useEffect(() => {
     if (!isLoading && data) {
-      const product = Object.values(data);
-      setProduct(product[0]);
+      const productT = Object.values(data);
+      setProduct(productT[0]);
     } else if (error) {
-      console.error('Error al obtener productos por categoría:', error);
+      console.error('Error al obtener producto', error);
     }
   }, [isLoading, data, error]);
 
   const onAddToCart = () => {
     dispatch(addItem({ ...product, quantity: 1 }));
   }
-
-  console.log('product', product)
 
   return (
     !product ? (
@@ -64,7 +62,7 @@ const DetailScreen = () => {
                     styles.buttom
                   ]}
                   android_ripple={{ color: 'rgba(255, 255, 255, 0.9)' }}
-                  onPress={null}>
+                  onPress={onAddToCart}>
                   <Text style={styles.textButtom}>Agregar</Text>
                 </Pressable>
               </View>

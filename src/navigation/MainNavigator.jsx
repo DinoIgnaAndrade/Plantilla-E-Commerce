@@ -18,7 +18,6 @@ const MainNavigator = () => {
         (async () => {
             try {
                 const localData = await fetchData(localId)
-                console.log('localData', localData)
                 if (localData?.rows.length) {
 
                     const rows = localData.rows._array;
@@ -29,7 +28,6 @@ const MainNavigator = () => {
                     const user = localData.rows._array[0]
                     dispatch(setUser(user))
                     dispatch(setPersonalInfo(user))
-                    console.log(user.user,'Sesion Iniciada')
                 }
             } catch (error) {
                 console.log('Data Error', error)

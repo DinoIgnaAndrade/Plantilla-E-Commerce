@@ -10,6 +10,7 @@ export const cartSlice = createSlice({
     },
     reducers: {
         addItem: (state, action) => {
+            
             const isProductInCart = state.items.find(item => item.id === action.payload.id)
             if (!isProductInCart) {
                 state.items.push(action.payload)
