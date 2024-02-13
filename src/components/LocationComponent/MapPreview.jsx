@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View, Image,Dimensions } from 'react-native'
-import { maps_api_key } from '../../apis/googleCloud';
 
 const MapPreview = ({ location }) => {
+
+    const maps_api_key = process.env.EXPO_PUBLIC_API_KEY_MAP;
+
     return (
         <View style={styles.mapPreview}>
             <Image

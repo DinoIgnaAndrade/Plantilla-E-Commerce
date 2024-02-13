@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 import MapPreview from './MapPreview';
-import { maps_api_key } from '../../apis/googleCloud';
 import { setUserLocation } from '../../features/authSlice';
 import { usePutUserLocationMutation } from '../../services/shopServices';
 
 const LocationSelector = () => {
 
+    const maps_api_key = process.env.EXPO_PUBLIC_API_KEY_MAP;
     const [location, setLocation] = useState(0);
     const [error, setError] = useState("");
     const [address, setAddress] = useState("");
