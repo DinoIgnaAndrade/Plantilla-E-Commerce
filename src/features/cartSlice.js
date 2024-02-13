@@ -3,14 +3,13 @@ import { createSlice, current } from "@reduxjs/toolkit";
 export const cartSlice = createSlice({
     name: 'cart',
     initialState: {
-            user: 'userLogged',
-            updatedAt: Date.now().toLocaleString(),
-            total: 0,
-            items: []
+        updatedAt: Date.now().toLocaleString(),
+        total: 0,
+        items: []
     },
     reducers: {
         addItem: (state, action) => {
-            
+
             const isProductInCart = state.items.find(item => item.id === action.payload.id)
             if (!isProductInCart) {
                 state.items.push(action.payload)
@@ -44,11 +43,24 @@ export const cartSlice = createSlice({
             }
         },
         removeItem: (state, action) => {
-
+            const index = state.items.findIndex(item => item.id === action.payload.id);
+            if (index !== -1) {
+                if (state.items[index].quantity === 1) {
+                    state.items.splice(index, 1); // Si la cantidad es 1, eliminar el artículo del carrito
+                } else {
+                    state.items[index].quantity -= 1; // Si la cantidad es mayor que 1, reducir la cantidad en 1
+                }
+            }
+            state.total = state.items.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            state.updatedAt = Date.now().toLocaleString();
+        },
+        removeAll: (state, action) => {
+            state.total = 0;
+            state.items = [];
         }
     }
 })
 
-export const { addItem, removeItem } = cartSlice.actions
+export const { addItem, removeItem, removeAll } = cartSlice.actions
 
 export default cartSlice.reducer

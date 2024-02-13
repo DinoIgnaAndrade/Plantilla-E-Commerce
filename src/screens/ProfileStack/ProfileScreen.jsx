@@ -6,6 +6,7 @@ import UserIformation from '../../components/CardsInformation/UserInformation';
 import DireccionInformation from '../../components/CardsInformation/DireccionInformation';
 import CardLogout from '../../components/CardsInformation/CardLogout';
 import AuthButtom from '../../components/Inputs/AuthButtom';
+import OrdersInformation from '../../components/CardsInformation/OrdersInformation';
 
 
 const ProfileScreen = ({ navigation }) => {
@@ -45,6 +46,7 @@ const ProfileScreen = ({ navigation }) => {
           <View style={styles.container}>
             <UserIformation />
             <DireccionInformation />
+            <OrdersInformation />
             <CardLogout />
           </View>
       }

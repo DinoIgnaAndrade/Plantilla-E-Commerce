@@ -30,6 +30,9 @@ const ProductCard = ({
     const dispatch = useDispatch();
 
     return (
+
+        navigation 
+        ?
         <Pressable
             style={({ pressed }) => [
                 {
@@ -43,6 +46,35 @@ const ProductCard = ({
                 navigation.navigate('Details'),
                 dispatch(setProductIdSelected(item.id))
         ]}
+        >
+
+            <Image
+                style={styles.image}
+                resizeMode='cover'
+                source={{ uri: item.thumbnail }}
+            />
+            <View style={styles.textContainer}>
+                <View style={styles.ratingContainer}>
+                    <Text style={styles.rating}>{item.rating}</Text>
+                    {renderStars()}
+                </View>
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.price}>${item.price}</Text>
+            </View>
+
+        </Pressable>
+
+        :
+
+        <Pressable
+            style={({ pressed }) => [
+                {
+                    backgroundColor:pressed ? 'rgba(50, 50, 50, 0.5)' : 'black',
+                    borderRadius: 30,
+                },
+                styles.container
+            ]}
+            android_ripple={{ color: 'rgba(255, 255, 255, 0.9)' }}
         >
 
             <Image
