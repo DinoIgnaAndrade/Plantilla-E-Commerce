@@ -104,14 +104,14 @@ const styles = StyleSheet.create({
     fontSize: 40,
     borderRadius: 50,
     zIndex: 1,
-    width: 115,
+    width: 135,
     textAlign: 'center',
 
     backgroundColor: 'black',
     color: 'white',
 
     top: 30,
-    right: 35,
+    right: 0,
     transform: [{ rotate: '45deg' }],
   },
   textContainer: {

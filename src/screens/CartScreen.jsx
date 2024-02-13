@@ -14,7 +14,7 @@ const CartScreen = ({ navigation }) => {
   const name = useSelector(state => state.authReducer.name)
   const phone = useSelector(state => state.authReducer.phone)
   const localId = useSelector(state => state.authReducer.localId)
-  const address = useSelector(state => state.authReducer.location.address)
+  const address = useSelector(state => state.authReducer.location?.address)
 
   const items = useSelector(state => state.cartReducer.items)
   const total = useSelector(state => state.cartReducer.total)
