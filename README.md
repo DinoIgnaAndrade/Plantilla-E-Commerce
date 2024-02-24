@@ -105,7 +105,7 @@ npm install -S yup
 - **[@expo/vector-icons](https://icons.expo.fyi/Index)** Proporciona los iconos utilizados en la aplicacion.
 
 ### Archivo Indispesables: 
-Dentro del repo, se encuentra una carpeta con 2 archivos. El '.env' se copia y pega en la carpeta principal del proyecto, lo que seria la capeta 'platillaEcommerce'. El '.env' tiene las indicaciones de las credenciales que necesita de parte de FireBase y de googleMaps. 
+Dentro del repo, se encuentra una carpeta con 2 archivos. El apk de la aplicacion. Y el MOCK_DATA.json para la base de datos, existe otra carpeta apis, donde los archivos se deben pasar a las carpetas de services, en el caso de base_url.js, y LocationComponent en el caso de googleClouds. Pasar las credenciales correspodientes pedidas en los archivos.
 El archivo json se usa para la creacion de la base de datos, para la seccion de productos(products). Lo ideal es que la base de datos se vea de esta forma:
 
 <img src="./Recursos/firebase.jpg" width="700" height="190">
@@ -171,7 +171,3 @@ El proyecto se Inicio hace 20 dias, no desde 0 pero casi, volviendo a trabajar e
 - #### Agregado de Animaciones con **[React Native Reanimated](https://www.reanimated2.com/)(Pediente)**
 En el momento que se terminen los arreglos anteriores y el desarrollo llegue a un punto base estable se incurcionara en desarrollo de sus animaciones al mas puro estilo ezquiso sin vida que no va a ver la luz del sol el los siguientes 9 meses. 
 El objetivo en lograr animaciones satisfactorias y fluidas. 
-
-<img src="https://cdn.alfabetajuega.com/alfabetajuega/2020/12/bob-esponja-destruido-1.jpg?width=1200" width="1200" height="400">
-
-Fin.

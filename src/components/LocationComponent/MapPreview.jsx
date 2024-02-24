@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Image,Dimensions } from 'react-native'
+import { maps_api_key } from './googleCloud'
 
 const MapPreview = ({ location }) => {
 

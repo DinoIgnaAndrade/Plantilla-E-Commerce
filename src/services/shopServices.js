@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-
-const base_url = process.env.EXPO_PUBLIC_BASE_URL;
+import { base_url, api_key } from "./base_url"
 
 export const shopApi = createApi({
     reducerPath: "shopApi",
