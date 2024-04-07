@@ -158,8 +158,6 @@ El proyecto se Inicio hace 20 dias, no desde 0 pero casi, volviendo a trabajar e
 
 - **Favoritos:(Pendiente)** Falto la implentacion de una pantalla con productos favoritos. La idea es hacer un post para la firebase para que guarde el id de productos relacionado con mail de usuario en la base de datos y que la app haga la peticion correspondiente.
 
-- **Arreglo de la build del apk:(Pendiente)** Uno de los problemas presentes, es que si bien Expo contruye el archivo, por alguna razon no realiza las peticiones a la base de datos y no ingresa ningun tipo de dato.
-
 - **Mejora de apartado Visual de Orders:(Pendiente)** Con el tiempo limite le falto un poco de personalizacion y correccion. En los siguinetes dias despues de la evaluacion se mejorara.
 
 - **Agregado de apartado para tarjetas de credito:(Pendiente)** Toda app de e-commerce tendria uno. Pero en general solo sera el estado visual, la logica para guardar datos todavia no. 
