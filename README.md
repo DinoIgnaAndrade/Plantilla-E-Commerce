@@ -9,6 +9,7 @@ En cualquiera de los casos el proyecto se puede descargar directamente del repos
 ```
 gh repo clone DinoIgnaAndrade/Plantilla-E-Commerce
 ```
+O descargar el APK [Aquí](https://drive.google.com/file/d/1tgYH5V57sATlF7o4DzmmKPIxD4W3cwLL/view?usp=drive_link)
 Y para iniciar el proyecto.
 ```
 npx expo start
